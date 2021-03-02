@@ -2,17 +2,32 @@ import React, { Component } from 'react';
 
 class Counter extends Component {
     state = { 
-        count:0
+        count:0,
+        imageUrl: 'https://res.cloudinary.com/dleicsu2y/image/upload/v1601466525/MYWEB/marcus-carlsson-vlLH_kn-_h8-unsplash_uorvty.jpg'
+        
+    };
+    
+    styles ={
+        fontSize :20,
+        fontWeight: "bold" 
     };
 
     render() { 
         return (
             <React.Fragment>
-                <span>{this.formatCount()}</span>
-                <button>Increment</button>
+                <span style={this.styles} className={this.getBadgeClasses()}> counter</span>
+                <img style={{width:200}} src= {this.state.imageUrl} alt = ""/>
+                <span > {this.formatCount()} </span>
+                <button> Increment </button>
             </React.Fragment>
-        );
+        ); 
     } 
+
+    getBadgeClasses() {
+        let classes = "badge m-2 badge-";
+        classes += this.state.count === 0 ? "warning" : "primary";
+        return classes; 
+    }
 
     formatCount(){
         const { count } = this.state;

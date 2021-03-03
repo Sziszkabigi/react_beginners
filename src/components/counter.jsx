@@ -3,8 +3,8 @@ import React, { Component } from 'react';
 class Counter extends Component {
     state = { 
         count:0,
-        imageUrl: 'https://res.cloudinary.com/dleicsu2y/image/upload/v1601466525/MYWEB/marcus-carlsson-vlLH_kn-_h8-unsplash_uorvty.jpg'
-        
+        imageUrl: 'https://res.cloudinary.com/dleicsu2y/image/upload/v1601466525/MYWEB/marcus-carlsson-vlLH_kn-_h8-unsplash_uorvty.jpg',
+        tags: ['tag1', 'tag2','tag3']
     };
     
     styles ={
@@ -19,6 +19,9 @@ class Counter extends Component {
                 <img style={{width:200}} src= {this.state.imageUrl} alt = ""/>
                 <span > {this.formatCount()} </span>
                 <button> Increment </button>
+                <ul>
+                    { this.state.tags.map(tag => <li key={tag}>{tag}</li>) }
+                </ul>
             </React.Fragment>
         ); 
     } 

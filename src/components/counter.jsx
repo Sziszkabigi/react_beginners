@@ -11,25 +11,33 @@ class Counter extends Component {
         fontSize :20,
         fontWeight: "bold" 
     };
-
-    handleIncrement = product => {
-        console.log(product);
+    /* constructor() {
+        super();
+        this.handleIncrement = this.handleIncrement.bind(this);
+        we can use this constructor and after we need to use it.... the easier way whatr I used below => function
+    } */
+    handleIncrement = () => {
         this.setState({ count: this.state.count + 1 });
-    };
+    }; 
 
-    render() { 
+    render() {   
         return (
             <React.Fragment>
-                <span style={this.styles} className={this.getBadgeClasses()}> counter</span>
-                <img style={{width:200}} src= {this.state.imageUrl} alt = ""/>
-                <span > {this.formatCount()} </span>
+                {this.props.children}
+                <span style = {this.styles} > counter </span> 
+                <span>  </span>
+                <span className={this.getBadgeClasses()}> 
+                    {this.formatCount()}
+                 </span>
                 <button 
-                    onClick={() => this.handleIncrement() }
-                 >
-                    Increment </button>
+                    onClick= {this.handleIncrement} 
+                    className ="btn btn-secondary btn -sm">
+                    Increment 
+                </button>
+                <img style ={{width:200}} src= {this.state.imageUrl} alt = ""/>
                 <ul>
                     { this.state.tags.map(tag => <li key={tag}>{tag}</li>) }
-                </ul>
+                </ul> 
             </React.Fragment>
         ); 
     } 
@@ -42,8 +50,8 @@ class Counter extends Component {
 
     formatCount(){
         const { count } = this.state;
-        return count === 0 ? <h1>Zero</h1> : count;
+        return count === 0 ?  "Zero" : count;
     }
 }
- 
+
 export default Counter;

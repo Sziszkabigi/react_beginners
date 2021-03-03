@@ -12,13 +12,17 @@ class Counter extends Component {
         fontWeight: "bold" 
     };
 
+    handleIncrement = () => {
+        this.setState({count:this.state.count + 1})
+    };
+
     render() { 
         return (
             <React.Fragment>
                 <span style={this.styles} className={this.getBadgeClasses()}> counter</span>
                 <img style={{width:200}} src= {this.state.imageUrl} alt = ""/>
                 <span > {this.formatCount()} </span>
-                <button> Increment </button>
+                <button onClick={this.handleIncrement} > Increment </button>
                 <ul>
                     { this.state.tags.map(tag => <li key={tag}>{tag}</li>) }
                 </ul>

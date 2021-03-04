@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 
 class Counter extends Component {
   state = { 
-    count:this.props.counter.value,
     imageUrl: 'https://res.cloudinary.com/dleicsu2y/image/upload/v1601466525/MYWEB/marcus-carlsson-vlLH_kn-_h8-unsplash_uorvty.jpg',
     tags: ['tag1', 'tag2','tag3']
 };
@@ -16,9 +15,10 @@ class Counter extends Component {
         this.handleIncrement = this.handleIncrement.bind(this);
         we can use this constructor and after we need to use it.... the easier way whatr I used below => function
     } */
-  handleIncrement = () => {
+	/* remove this because of the reset button it need to be truth .... but the statewas a local info
+	handleIncrement = () => {
     this.setState({ count: this.state.count + 1 });
-  }; 
+  };  */
 
   render() {   
     return (
@@ -30,7 +30,7 @@ class Counter extends Component {
           {this.formatCount()}
         </span>
         <button 
-          onClick= {this.handleIncrement} 
+          onClick= {()=> this.props.onIncrement(this.props.counter)} 
           className ="btn btn-secondary btn -sm">
             Increment 
         </button>
@@ -52,13 +52,13 @@ class Counter extends Component {
 
   getBadgeClasses() {
     let classes = "badge m-2 badge-";
-    classes += this.state.count === 0 ? "warning" : "primary";
+    classes += this.props.counter.value === 0 ? "warning" : "primary";
     return classes; 
   }
 
   formatCount(){
-		const { count } = this.state;
-    return count === 0 ?  "Zero" : count;
+		const { value } = this.props.counter;
+    return value === 0 ?  "Zero" : value;
     }
 }
 
